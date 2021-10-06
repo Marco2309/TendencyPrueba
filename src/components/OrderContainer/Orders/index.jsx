@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 export default function Orders({ orders, setOrder }) {
   const [selected, setSelected] = useState("");
   return (
-    <Container>
+    <Container className='border'>
       <h1>Orders</h1>
       <ListGroup>
         {orders ? (

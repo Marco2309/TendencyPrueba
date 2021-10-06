@@ -9,6 +9,8 @@ import "./App.css";
 
 function App() {
   const [orders, setOrders] = useState({});
+  const [order, setOrder] = useState('')
+
   useEffect(() => {
     const getOrders = async () => {
       try {
@@ -29,8 +31,8 @@ function App() {
   return (
     <div className="App position-relative">
       <NavBar />
-      <Orders orders={orders.orders}/>
-      <FormComponent />
+      <Orders orders={orders.orders} setOrder={setOrder} order={order}/>
+      <FormComponent orderId={order.number}/>
       <Footer />
     </div>
   );

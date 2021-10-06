@@ -11,14 +11,14 @@ export default function OrderDetail({ order }) {
     display = 'd-block'
   }
   return (
-    <Container className='d-flex justify-content-center flex-wrap'>
+    <Container className='d-flex justify-content-center flex-wrap border'>
       <h1 id={"order"+order.id}>Number of order: {order.number} </h1>
       {order
         ? order.items.map((item) => {
             return (
               <Card key={item.id} style={{ width: "18rem" }} className='mb-2'>
-                <Card.Header>Sku: {item.sku}</Card.Header>
-                <ListGroup variant="flush">
+                <Card.Header className='fw-bold'>Sku: {item.sku}</Card.Header>
+                <ListGroup horizontal>
                   <ListGroup.Item>name: {item.name}</ListGroup.Item>
                   <ListGroup.Item>quantity: {item.quantity}</ListGroup.Item>
                   <ListGroup.Item>price: {item.price}</ListGroup.Item>
