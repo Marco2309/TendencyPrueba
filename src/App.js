@@ -32,7 +32,7 @@ function App() {
     <div className="App position-relative">
       <NavBar />
       <Orders orders={orders.orders} setOrder={setOrder} order={order}/>
-      <FormComponent orderId={order.number}/>
+      <FormComponent orderN={order.number}/>
       <Footer />
     </div>
   );

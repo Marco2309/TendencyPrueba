@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 
-export default function FormComponent({ orderId }) {
+export default function FormComponent({ orderN }) {
   const [disable_btn, setDisable_btn] = useState(true);
   const [sku, setSku] = useState("");
   const [name, setName] = useState("");
@@ -14,21 +14,27 @@ export default function FormComponent({ orderId }) {
 
   const hadleSubmit = (e) => {
     e.preventDefault();
-    const data = JSON.parse(sessionStorage.getItem(`${orderId}`));
-    sessionStorage.setItem(
-      `${orderId}`,
-      JSON.stringify({
-        ...data,
-        [sku]: { sku, name, quantity, price },
-      })
-    );
+    const data = JSON.parse(sessionStorage.getItem(`${orderN}`));
+    data
+      ? sessionStorage.setItem(
+          `${orderN}`,
+          JSON.stringify([...data, { sku, name, quantity, price }])
+        )
+      : sessionStorage.setItem(
+          `${orderN}`,
+          JSON.stringify([{ sku, name, quantity, price }])
+        );
+        setSku('')
+        setName('')
+        setQuantity('')
+        setPrice('')
   };
 
   useEffect(() => {
-    if (orderId) {
+    if (orderN) {
       setDisable_btn(false);
     }
-  }, [disable_btn, orderId]);
+  }, [disable_btn, orderN]);
 
   return (
     <Container className="container-form">

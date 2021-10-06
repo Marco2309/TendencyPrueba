@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 export default function Orders({ orders, setOrder }) {
   const [selected, setSelected] = useState("");
   return (
-    <Container className='border'>
+    <Container className='border overflow-auto'>
       <h1>Orders</h1>
       <ListGroup>
         {orders ? (
