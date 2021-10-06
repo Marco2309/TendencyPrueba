@@ -1,23 +1,25 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 
-
 export default function OrderDetail({ order }) {
   const data = JSON.parse(sessionStorage.getItem(`${order.number}`));
-  const [visible, setVisible] = useState('d-none')
+  const [visible, setVisible] = useState("d-none");
   let display = "d-none";
   if (order) {
     display = "d-block";
   }
 
   const handlePay = () => {
-    console.log('d-block');
-    setVisible('')
-    setTimeout(function(){ setVisible('d-none') }, 1000);
+    setTimeout(function () {
+      setVisible("");
+    }, 500);
+    setTimeout(function () {
+      setVisible("d-none");
+    }, 1200);
   };
   return (
     <Container className="d-flex justify-content-center flex-wrap border overflow-auto">
@@ -52,15 +54,22 @@ export default function OrderDetail({ order }) {
             );
           })
         : null}
-      <Container className='d-flex justify-content-center flex-wrap position-relative'>
-      <Button
-        className={"pay-btn " + display}
-        variant="success"
-        onClick={handlePay}
-      >
-        Pay
-      </Button>
-      <Alert variant='success' className={'position-absolute top-0 start-50 translate-middle '+visible}>successful payment</Alert>
+      <Container className="d-flex justify-content-center flex-wrap position-relative">
+        <Button
+          className={"pay-btn " + display}
+          variant="success"
+          onClick={handlePay}
+        >
+          Pay
+        </Button>
+        <Alert
+          variant="success"
+          className={
+            "position-absolute top-0 start-50 translate-middle " + visible
+          }
+        >
+          successful payment
+        </Alert>
       </Container>
     </Container>
   );

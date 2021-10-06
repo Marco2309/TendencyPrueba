@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 
-export default function FormComponent({ orderN }) {
+export default function FormComponent({ orderN, setActualizar }) {
   const [disable_btn, setDisable_btn] = useState(true);
   const [sku, setSku] = useState("");
   const [name, setName] = useState("");
@@ -28,6 +28,7 @@ export default function FormComponent({ orderN }) {
         setName('')
         setQuantity('')
         setPrice('')
+        setActualizar([orderN,sku])
   };
 
   useEffect(() => {
@@ -37,7 +38,7 @@ export default function FormComponent({ orderN }) {
   }, [disable_btn, orderN]);
 
   return (
-    <Container className="container-form">
+    <Container className="container-form overflow-auto">
       <Form onSubmit={hadleSubmit}>
         <Row className="mb-2">
           <Form.Group as={Col} controlId="formGridSku">

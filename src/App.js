@@ -10,6 +10,8 @@ import "./App.css";
 function App() {
   const [orders, setOrders] = useState({});
   const [order, setOrder] = useState('')
+  const [actualizar, setActualizar] = useState('')
+
 
   useEffect(() => {
     const getOrders = async () => {
@@ -31,8 +33,8 @@ function App() {
   return (
     <div className="App position-relative">
       <NavBar />
-      <Orders orders={orders.orders} setOrder={setOrder} order={order}/>
-      <FormComponent orderN={order.number}/>
+      <Orders orders={orders.orders} setOrder={setOrder} order={order} actualizar={actualizar}/>
+      <FormComponent orderN={order.number} setActualizar={setActualizar}/>
       <Footer />
     </div>
   );
