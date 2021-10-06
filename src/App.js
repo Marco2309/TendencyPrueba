@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import NavBar from "./components/NavBar";
+import Orders from "./components/OrderContainer";
+import FormComponent from "./components/Form";
+import Footer from "./components/Footer";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
+  const [orders, setOrders] = useState({});
+  useEffect(() => {
+    const getOrders = async () => {
+      try {
+        const url = "https://eshop-deve.herokuapp.com/api/v2/orders";
+        const Token = process.env.REACT_APP_TOKEN;
+        const config = {
+          headers: { Authorization: `Bearer ${Token}` },
+        };
+        const orders = await axios.get(url, config);
+        setOrders(orders.data)
+        return orders;
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getOrders();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App position-relative">
+      <NavBar />
+      <Orders orders={orders.orders}/>
+      <FormComponent />
+      <Footer />
     </div>
   );
 }
